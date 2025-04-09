@@ -25,5 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //管理者の科目登録ページのルーティング
 Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+//ユーザーの科目登録ページのルーティング
+Route::get('/user_subject_register', [SubjectController::class, 'user_subject_register']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'user_top'])->name('home');
 Route::get('user/user_top',[UserAttendanceController::class,'index']);
