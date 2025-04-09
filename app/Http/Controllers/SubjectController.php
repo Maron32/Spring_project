@@ -16,4 +16,9 @@ class SubjectController extends Controller
     public function user_subject_register() {
         return view('user.user_subject_register');
     }
+
+    //ユーザーの科目登録確認ページ
+    public function user_subject_register_confirm() {
+        return view('user.user_subject_register_confirm');
+    }
 }
