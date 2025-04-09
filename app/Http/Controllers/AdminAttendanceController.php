@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AdminAttendanceController extends Controller
 {
     // 管理者TOP
-    public function top(Request $request) {
+    public function index(Request $request) {
         return view('admin.admin_top');
     }
 
