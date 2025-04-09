@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserAttendanceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'user_top'])->name('home');
+
+// 利用者のトップ画面
+Route::get('user/user_top',[UserAttendanceController::class,'index']);
