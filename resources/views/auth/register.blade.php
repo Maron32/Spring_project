@@ -31,7 +31,12 @@
                             <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('学科') }}</label>
 
                             <div class="col-md-6">
-                                <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
+                                <select id="department" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
+                                    <option value="" disabled>選択してください</option>
+                                    @foreach($departments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
 
                                 @error('department')
                                     <span class="invalid-feedback" role="alert">
@@ -46,8 +51,13 @@
                             <label for="grade" class="col-md-4 col-form-label text-md-end">{{ __('学年') }}</label>
 
                             <div class="col-md-6">
-                                <input id="grade" type="text" class="form-control @error('grade') is-invalid @enderror" name="grade" value="{{ old('grade') }}" required autocomplete="grade" autofocus>
+                                <select id="grade" type="text" class="form-control @error('grade') is-invalid @enderror" name="grade" value="{{ old('grade') }}" required autocomplete="grade" autofocus>
+                                    <option value="" disabled>選択してください</option>
+                                    @foreach($grades as $grade)
+                                    <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                    @endforeach
 
+                                </select>
                                 @error('grade')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\Grade;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +40,17 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {
+        // 学科を取得
+        $departments = Department::all();
+        // 学年を取得
+        $grades = Grade::all();
+
+        // viewに学科、学年を渡す
+        return view('auth.register', compact('departments', 'grades'));
     }
 
     /**
