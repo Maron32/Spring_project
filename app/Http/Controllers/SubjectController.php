@@ -47,4 +47,28 @@ class SubjectController extends Controller
             return view('user.user_subject_register_confirm', compact('subjects'));
         }
     }
+
+    public function user_subject_create(Request $request) {
+        // ログインしていない場合はログインページに遷移
+        if (!Auth::check()) {
+            return redirect('/login');
+        } else {
+            // セッションから科目idの配列を取得
+            $subjects_id = session('subjects');
+            // 科目idから一致する科目を全件取得
+            $subjects = Subject::whereIn('id', $subjects_id)->get();
+            // 1科目ずつ登録
+            foreach ($subjects as $subject) {
+                // 各情報を埋め込む
+                $enrollSubject = new EnrolledSubject();
+                $enrollSubject->subject_id = $subject->id;
+                $enrollSubject->student_id = Auth::id();
+                // DBへ登録
+                $enrollSubject->save();
+            }
+            // セッションを削除
+            session()->forget('subjects');
+            return redirect('/user/user_top');
+        }
+    }
 }
