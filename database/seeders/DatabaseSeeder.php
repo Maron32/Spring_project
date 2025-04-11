@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PeriodsSeeder::class);
         $this->call(DepartmentsSeeder::class);
         $this->call(AttendanceStatusSeeder::class);
-            // 他のシーダーがあればここに追加
-
+        $this->call(UsersSeeder::class);
+        $this->call(SubjectSeeder::class);
+        // 他のシーダーがあればここに追加
     }
 }
