@@ -39,8 +39,11 @@ class SubjectController extends Controller
             unset($form['_token']);
             // セッションに入力された科目を登録する
             session()->put('subjects', $request->subjects);
-            // viewに科目を渡し、リダイレクト
-            $subjects = $request->subjects;
+            // 選択科目のidを受け取る
+            $subjects_id = $request->subjects;
+            // 選択した科目の情報を入れる配列の定義
+            $subjects = Subject::whereIn('id', $subjects_id)->get();
+
             return view('user.user_subject_register_confirm', compact('subjects'));
         }
     }
