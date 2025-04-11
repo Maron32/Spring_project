@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subject::class);
     }
+    // 名前で検索するスコープの定義
+    public function scopeNameSearch($query, $name){
+        return $query->where('name','like','%'.$name.'%');
+    }
+    
+    public function getData(){
+        return $this->name.'('.$this->email.')';
+    }
 }
