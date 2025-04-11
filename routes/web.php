@@ -43,4 +43,4 @@ Route::post('/user_subject_create', [SubjectController::class, 'user_subject_cre
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'user_top'])->name('home');
 
 // 利用者のトップ画面
-Route::get('user/user_top',[UserAttendanceController::class,'index']);
+Route::get('/user',[UserAttendanceController::class,'index'])->name('user');

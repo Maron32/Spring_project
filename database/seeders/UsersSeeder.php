@@ -17,6 +17,7 @@ class UsersSeeder extends Seeder
     {
         // Userデータの定義
         $users = [
+            // 生徒
             [
                 'name' => '鈴木太郎',
                 'department_id' => 1,
@@ -43,10 +44,11 @@ class UsersSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            // 管理者
             [
                 'name' => '山口賢治',
-                'department_id' => 3,
-                'grade_id' => 3,
+                'department_id' => 99,
+                'grade_id' => 99,
                 'email'  => 'yamaguchi@morijyobi.ac.jp',
                 // 'email_varified_at' => null,
                 'password' => Hash::make('morijyobi'),
@@ -58,8 +60,8 @@ class UsersSeeder extends Seeder
             ],
             [
                 'name' => '原田又三郎',
-                'department_id' => 2,
-                'grade_id' => 2,
+                'department_id' => 99,
+                'grade_id' => 99,
                 'email'  => 'harada@morijyobi.ac.jp',
                 // 'email_varified_at' => null,
                 'password' => Hash::make('morijyobi'),
