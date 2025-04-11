@@ -17,7 +17,7 @@
       </div>
       @endforeach
     </div>
-    <button type="submit">登録</button>
+    <button type="submit">確認</button>
   </form>
 </body>
 </html>
