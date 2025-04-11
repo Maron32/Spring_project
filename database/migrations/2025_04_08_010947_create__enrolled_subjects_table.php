@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('enrolled_subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained(); // 科目ID
+            $table->foreignId('subject_id')->constrained('subjects'); // 科目ID
             $table->foreignId('student_id')->constrained('users'); // 生徒のアカウントID
             $table->boolean('is_deleted')->default(false); 
             $table->timestamps();

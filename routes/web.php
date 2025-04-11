@@ -37,7 +37,10 @@ Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_
 //ユーザーの科目登録ページのルーティング
 Route::get('/user_subject_register', [SubjectController::class, 'user_subject_register']);
 //ユーザーの科目登録確認ページのルーティング
-Route::get('/user_subject_register_confirm', [SubjectController::class, 'user_subject_register_confirm']);
+Route::post('/user_subject_register_confirm', [SubjectController::class, 'user_subject_register_confirm']);
+// ユーザーの科目登録処理(DBへ登録)へのルーティング
+Route::post('/user_subject_create', [SubjectController::class, 'user_subject_create']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'user_top'])->name('home');
 
 // 利用者のトップ画面
 Route::get('/user',[UserAttendanceController::class,'index'])->name('user');
