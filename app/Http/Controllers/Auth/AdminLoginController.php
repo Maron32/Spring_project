@@ -25,9 +25,7 @@ class AdminLoginController extends Controller
             // 管理者でなければログアウトし、ログインページに戻す
             } else {
                 Auth::logout();
-                return redirect()->route('admin.login')->withErrors([
-                    'email' => '管理者アカウントではありません。'
-                ]);
+                return redirect('/home');
             }
         }
         
