@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Day;
 use App\Models\EnrolledSubject;
+use App\Models\Period;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Matcher\Subset;
 
@@ -13,7 +16,17 @@ class SubjectController extends Controller
 {
     //管理者の科目登録ページ
     public function admin_subject_register() {
-        return view('admin.admin_subject_register');
+        $teachers = User::where([['master', 1], ['delete', 0]])->get();
+        $terms = ['前期', '後期', '通年'];
+        // 曜日、コマを取得
+        $days = Day::all();
+        $periods = Period::all();
+        return view('admin.admin_subject_register', compact('teachers', 'terms', 'days', 'periods'));
+    }
+
+    // 管理者の科目登録確認ページ
+    public function admin_subject_register_confirm(Request $request) {
+
     }
 
     //ユーザーの科目登録ページ
