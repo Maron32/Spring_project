@@ -34,6 +34,8 @@ Route::get('/attendance_status', [AdminAttendanceController::class, 'attendance_
 
 //管理者の科目登録ページのルーティング
 Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+// 管理者の科目登録確認ページへのルーティング
+Route::post('/admin_subject_register_confirm', [SubjectController::class, 'admin_subject_register_confirm']);
 //ユーザーの科目登録ページのルーティング
 Route::get('/user_subject_register', [SubjectController::class, 'user_subject_register']);
 //ユーザーの科目登録確認ページのルーティング
