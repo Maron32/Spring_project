@@ -43,6 +43,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
     // 管理者の科目登録確認ページへのルーティング
     Route::post('/admin_subject_register_confirm', [SubjectController::class, 'admin_subject_register_confirm']);
+    // 管理者の科目登録の登録へのルーティング
+    Route::post('/admin_subject_create', [SubjectController::class, 'admin_subject_create']);
   
     // 管理者側の生徒名前検索
     Route::get('/admin/find', [AdminAttendanceController::class, 'students_find'])->name('students.find');
