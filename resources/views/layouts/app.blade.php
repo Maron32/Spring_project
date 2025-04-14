@@ -20,7 +20,8 @@
     <!-- CSS -->
     <!-- ユーザートップ -->
     <link rel="stylesheet" href="{{ asset('css/U_top-style.css') }}">
-    <!--  -->
+    <!-- ユーザー登録 -->
+    <link rel="stylesheet" href="{{ asset('css/U_register-style.css') }}">
     
 </head>
 
@@ -32,5 +33,6 @@
 </body>
 
 <script src="{{ asset('js/U_top.js') }}"></script>
+<script src="{{ asset('js/U_register.js') }}"></script>
 </body>
 </html>
