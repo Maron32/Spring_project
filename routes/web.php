@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAttendanceController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserAttendanceController;
@@ -25,20 +26,27 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // 管理者ログインのルーティング
-Route::get('/admin_login', [AdminAttendanceController::class, 'login'])->name('admin_login');
-// 管理者側TOPのルーティング
-Route::get('/admin', [AdminAttendanceController::class, 'index'])->name('admin');
-// 科目ごとの生徒の出席状況一覧のルーティング
-Route::get('/attendance_status', [AdminAttendanceController::class, 'attendance_status'])->name('attendance_status');
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin_login');
+Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
-// 管理者側の生徒名前検索
-Route::get('/admin/find', [AdminAttendanceController::class, 'students_find'])->name('students.find');
-Route::get('/admin/search', [AdminAttendanceController::class, 'students_search'])->name('students.search');
+// 管理者のみがアクセス可能
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    // ここに管理者のみがアクセスできるルーティングを追記
+    
+    // 管理者側TOPのルーティング
+    Route::get('/admin', [AdminAttendanceController::class, 'index'])->name('admin');
+    // 科目ごとの生徒の出席状況一覧のルーティング
+    Route::get('/attendance_status', [AdminAttendanceController::class, 'attendance_status'])->name('attendance_status');
 
-// 
+    //管理者の科目登録ページのルーティング
+    Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+  
+    // 管理者側の生徒名前検索
+    Route::get('/admin/find', [AdminAttendanceController::class, 'students_find'])->name('students.find');
+    Route::get('/admin/search', [AdminAttendanceController::class, 'students_search'])->name('students.search');
 
-//管理者の科目登録ページのルーティング
-Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+});
+
 //ユーザーの科目登録ページのルーティング
 Route::get('/user_subject_register', [SubjectController::class, 'user_subject_register']);
 //ユーザーの科目登録確認ページのルーティング
