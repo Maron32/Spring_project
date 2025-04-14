@@ -26,7 +26,33 @@ class SubjectController extends Controller
 
     // 管理者の科目登録確認ページ
     public function admin_subject_register_confirm(Request $request) {
+        // ログインしていない場合は管理者ログインへ
+        if (!Auth::check()) {
+            return redirect('/admin/login');
+        } else {
+            $form = $request->all();
+            unset($form['_token']);
+            // セッションに入力された情報を格納する
+            session()->put('name', $request->name);
 
+            // 確認画面に送る情報を取得する
+            // 科目情報
+            $subject = [];
+            $name = $request->name;
+            $teacher = User::find($request->teacher);
+            $term = $request->term;
+            $lesson_days = $request->lesson_days;
+
+            // 曜日・コマ
+            $reqestDaytime = $request->daytime;
+            $daytimes = [];
+            foreach($reqestDaytime as $daytime) {
+                $daytime_find['days'] = Day::find($daytime['day']);
+                $daytime_find['periods'] = Period::find($daytime['period']);
+                array_push($daytimes, $daytime_find);
+            }
+            return view('admin.admin_subject_register_confirm', compact('name', 'teacher', 'term', 'lesson_days','daytimes'));
+        }
     }
 
     //ユーザーの科目登録ページ

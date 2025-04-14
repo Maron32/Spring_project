@@ -61,6 +61,27 @@
           </select>
         </div>
       </div>
+
+      <div>
+        <div>
+          <label>曜日</label>
+          <select name="daytime[2][day]" id="">
+            <option value="" disabled>選択してください</option>
+            @foreach($days as $day)
+            <option value="{{ $day->id }}">{{ $day->name }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div>
+          <label>コマ数</label>
+          <select name="daytime[2][period]" id="">
+            <option value="" disabled>選択してください</option>
+            @foreach($periods as $period)
+            <option value="{{ $period->id }}">{{ $period->periods }}コマ目</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
     </div>
 
     <button type="submit">確認</button>
