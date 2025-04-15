@@ -8,4 +8,7 @@ use Illuminate\Http\Request;
 class AdminRegisterController extends Controller
 {
     //
+    public function showRegistrationForm() {
+        return view('/admin.admin_register');
+    }
 }
