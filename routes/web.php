@@ -38,15 +38,19 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     // 科目ごとの生徒の出席状況一覧のルーティング
     Route::get('/attendance_status', [AdminAttendanceController::class, 'attendance_status'])->name('attendance_status');
 
+
     //管理者の科目登録ページのルーティング
     Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+    // 管理者の科目登録確認ページへのルーティング
+    Route::post('/admin_subject_register_confirm', [SubjectController::class, 'admin_subject_register_confirm']);
+    // 管理者の科目登録の登録へのルーティング
+    Route::post('/admin_subject_create', [SubjectController::class, 'admin_subject_create']);
   
     // 管理者側の生徒名前検索
     Route::get('/admin/find', [AdminAttendanceController::class, 'students_find'])->name('students.find');
     Route::get('/admin/search', [AdminAttendanceController::class, 'students_search'])->name('students.search');
 
 });
-
 //ユーザーの科目登録ページのルーティング
 Route::get('/user_subject_register', [SubjectController::class, 'user_subject_register']);
 //ユーザーの科目登録確認ページのルーティング
