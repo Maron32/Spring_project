@@ -41,7 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/attendance_status', [AdminAttendanceController::class, 'attendance_status'])->name('attendance_status');
 
     // 管理者アカウント登録へのルーティング
-    Route::get('/admin_register', [AdminRegisterController::class, 'showRegisterationForm']);
+    Route::get('/admin_register', [AdminRegisterController::class, 'showRegistrationForm']);
 
     //管理者の科目登録ページのルーティング
     Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
