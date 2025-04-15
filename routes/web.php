@@ -42,6 +42,10 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     // 管理者アカウント登録へのルーティング
     Route::get('/admin_register', [AdminRegisterController::class, 'showRegistrationForm']);
+    // 管理者アカウント登録確認へのルーティング
+    Route::match(['get', 'post'], '/admin_register_confirm', [AdminRegisterController::class, 'confirm']);
+    // 管理者アカウント登録処理へのルーティング
+    Route::post('/admin_create', [AdminRegisterController::class, 'create']);
 
     //管理者の科目登録ページのルーティング
     Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);

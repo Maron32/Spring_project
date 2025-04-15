@@ -7,15 +7,16 @@
 </head>
 <body>
     <h1>管理者アカウント作成</h1>
-    <form action="/admin_register_confirm" method="post" enctype="multipart/form-data">
+    <form action="/admin_register_confirm" method="POST" enctype="multipart/form-data">
+        @csrf
         <div>
             <label>名前</label>
-            <input type="text" name="name">
+            <input type="text" name="name" value="{{ old('name') }}">
         </div>
 
         <div>
             <label>メールアドレス</label>
-            <input type="text" name="email">
+            <input type="text" name="email" value="{{ old('email') }}">
         </div>
 
         <div>
@@ -28,7 +29,7 @@
             <input type="password" name="password_confirmation">
         </div>
 
-        <button type="submit">登録</button>
+        <button type="submit">確認</button>
     </form>
 </body>
 </html>
