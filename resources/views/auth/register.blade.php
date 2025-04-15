@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/U_register-style.css') }}">
 <div id="container">
     <h3>学生情報の登録</h3>
     <p id="grade">学年</p>
@@ -35,4 +36,6 @@
 
     <button type="button" id="registerBtn" class="registerBtn">登録</button>
   </div>
+<script src="{{ asset('js/U_register.js') }}"></script>
+
 @endsection
