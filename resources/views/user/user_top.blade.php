@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/U_top-style.css') }}">
+
 <body>
   <div id="container">
     <div id="button">
@@ -132,6 +134,8 @@
 
   <script type="text/javascript" src="top.js"></script>
 </body>
+<script src="{{ asset('js/U_top.js') }}"></script>
+
 
 </html>
 @endsection
