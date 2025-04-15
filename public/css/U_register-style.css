@@ -1,0 +1,82 @@
+html, body{
+    margin: 0;
+    padding: 0;
+  }
+.main{
+    margin: 0 auto;
+}
+  
+  h1{
+    margin: 0;
+    padding: 0;
+    color: white;
+    margin-left: 20px;
+  }
+  
+  
+  input {
+    border: 1px solid;
+    width: 400px;
+    height: 25px;
+  }
+  
+  .registerBtn {
+    display: block;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: rgb(39, 235, 107);
+    border: 1px solid black;
+    width: 120px;
+    height: 40px;
+    font-size: larger;
+    color: white;
+  }
+  
+  .registerBtn:hover{
+    /* opacity: 0.6; */
+    color:rgb(39, 235, 107) ;
+    background-color: black;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向に中央寄せ */
+    width: 500px; /* 親要素の幅を指定 */
+    margin: 30px auto; /* 親要素自体を中央寄せ */
+    padding: 20px; 
+    border: 1px solid black; 
+    margin-top: 50px;
+  }
+  
+  
+  p, input {
+    width: 100%; /* 親要素の幅に合わせる */
+    text-align: left; /* テキストを左寄せ */
+    margin: 2px;
+    box-sizing: border-box; /* パディングを含めた幅を指定 */
+  }
+  
+  #redAlert{
+    margin-top: 10px;
+    color: red;
+    font-size: small;
+  }
+  
+  #pwAlert{
+    margin-top: 10px;
+    color: red;
+    font-size: small;
+  }
+  
+  #gradeInput{
+    height: 28px;
+    width: 458px;
+  }
+  
+  #courseInput{
+    height: 28px;
+    width: 458px;
+  }
+  
+  

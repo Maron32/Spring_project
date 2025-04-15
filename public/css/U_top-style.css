@@ -1,0 +1,295 @@
+header {
+    background: linear-gradient(90deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
+}
+  
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-weight: lighter;
+    margin-left: 20px;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  table,
+  th,
+  td {
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+  
+  #container {
+    text-align: center;
+    width: 700px;
+    margin: 0 auto;
+  }
+  
+  table {
+    margin: 10px auto;
+  }
+  
+  th,
+  td {
+    padding: 15px 50px 15px 50px;
+    font-size: 18px;
+  }
+  
+  .attend {
+    width: 120px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: large;
+    background-color: rgb(55, 181, 254);
+    border: 1px solid;
+    margin-right: 20px;
+    color: white;
+  }
+  
+  .goHome {
+    width: 120px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: large;
+    background-color: rgb(55, 254, 115);
+    border: 1px solid;
+    color: white;
+  }
+  
+  .attend:hover {
+    background-color: black;
+    color: rgb(55, 181, 254);
+  }
+  
+  .goHome:hover {
+    background-color: black;
+    color: rgb(55, 254, 115);
+  }
+  
+  #button {
+    margin-top: 12px;
+    text-align: right;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  
+  .flex div {
+    background-color: rgb(211, 220, 253);
+    width: 160px;
+    height: 45px;
+    margin-left: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+  }
+  
+  /* ポップアップ1*/
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 96%;
+    background-color: rgba(255, 255, 255, 1);
+    display: none;
+    /* 初めは非表示にする */
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    flex-direction: column;
+    border: 10px solid rgb(124, 246, 255);
+    border-radius: 20px;
+  }
+  
+  /* ポップアップ2*/
+  #overlay2 {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 96%;
+    background-color: rgba(255, 255, 255, 1);
+    display: none;
+    /* 初めは非表示にする */
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    flex-direction: column;
+    border: 10px solid rgb(124, 246, 255);
+    border-radius: 20px;
+  }
+  
+  #overlay3 {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 96%;
+    background-color: rgba(255, 255, 255, 1);
+    display: none;
+    /* 初めは非表示にする */
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    flex-direction: column;
+    border: 10px solid rgb(124, 246, 255);
+    border-radius: 20px;
+    justify-content: center;
+  }
+  
+  #overlay4 {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 96%;
+    background-color: rgba(255, 255, 255, 1);
+    display: none;
+    /* 初めは非表示にする */
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    flex-direction: column;
+    border: 10px solid rgb(124, 246, 255);
+    border-radius: 20px;
+    justify-content: center;
+  }
+  
+  #closeBtn1 {
+    width: 130px;
+    height: 45px;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 1px solid black;
+    background-color: rgb(255, 92, 92);
+  }
+  
+  #closeBtn1:hover{
+    background-color: black;
+    color: rgb(255, 92, 92);
+  }
+  
+  #closeBtn2 {
+    width: 130px;
+    height: 45px;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 1px solid black;
+    background-color: rgb(255, 92, 92);
+  }
+  
+  #closeBtn2:hover{
+    background-color: black;
+    color: rgb(255, 92, 92);
+  }
+  
+  
+  #overlayReturnBtn1 {
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(255, 92, 92);
+    border: 1px solid black;
+    /* margin: 100px auto; */
+    font-size: large;
+    color: white;
+  }
+  
+  #overlayReturnBtn1:hover {
+    background-color: black;
+    color: rgb(255, 92, 92);
+  }
+  
+  #overlayReturnBtn2 {
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(255, 92, 92);
+    border: 1px solid black;
+    /* margin: 100px auto; */
+    font-size: large;
+    color: white;
+  }
+  
+  #overlayReturnBtn2:hover {
+    background-color: black;
+    color: rgb(255, 92, 92);
+  }
+  
+  #overlayAttendBtn {
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(139, 178, 255);
+    border: 1px solid black;
+    font-size: large;
+    color: white;
+  }
+  
+  #overlayAttendBtn:hover {
+    background-color: black;
+    color: rgb(139, 178, 255);
+  }
+  
+  #overlayGoHomeBtn {
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(139, 178, 255);
+    border: 1px solid black;
+    font-size: large;
+    color: white;
+  }
+  
+  #overlayGoHomeBtn:hover {
+    background-color: black;
+    color: rgb(139, 178, 255);
+  }
+  
+  #error{
+    font-size: small;
+    color: red;
+  }
+  
+  #overlayBtns1 {
+    margin-top: 180px;
+  }
+  
+  #overlayBtns2 {
+    margin-top: 30px;
+  }
+  
+  
+  #reason {
+    margin-top: 70px;
+  }
+  
+  /* 早退理由入力欄 */
+  #reasonInput {
+    width: 300px;
+    height: 50px;
+  }
+  
+  #days {
+    display: flex;
+  }
+  
+  /* 出席数や見込み出席率を表示 */
+  #days div {
+    width: 160px;
+    height: 45px;
+    margin-left: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* HTMLの下の線 */
+  .underline {
+    border-bottom: 1.5px solid rgb(205, 205, 205);
+    margin-top: 1px;
+  }
