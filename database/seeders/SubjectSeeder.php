@@ -16,6 +16,7 @@ class SubjectSeeder extends Seeder
         // Subjectデータを定義
         $subjects = [
             [
+                'id' => 1,
                 'name' => 'Java基礎A',
                 'teacher_id' => 3,
                 'total_lectures' => 30,
@@ -23,6 +24,7 @@ class SubjectSeeder extends Seeder
                 'term' => 1,
             ],
             [
+                'id' => 2,
                 'name' => 'Python基礎',
                 'teacher_id' => 3,
                 'total_lectures' => 30,
@@ -30,6 +32,7 @@ class SubjectSeeder extends Seeder
                 'term' => 1,
             ],
             [
+                'id' => 3,
                 'name' => 'Java応用A',
                 'teacher_id' => 4,
                 'total_lectures' => 30,
