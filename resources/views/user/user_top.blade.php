@@ -78,7 +78,7 @@
       <p>本日の科目</p>
 
       <!-- ここに科目を表示 -->
-      <div></div>
+      <div id="subject"></div>
 
 
 
@@ -128,6 +128,12 @@
       <button type="button" id="closeBtn2">閉じる</button>
     </div>
 
+    <!-- オーバーレイ5(GPS範囲外により出席失敗) -->
+    <div id="overlay5">
+      <p>出席できません</p>
+      <p>学校で出席登録を行ってください</p>
+      <button type="button" id="closeBtn3">閉じる</button>
+    </div>
 
 
   </div>

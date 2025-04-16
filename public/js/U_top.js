@@ -6,6 +6,7 @@ const overlay = document.getElementById("overlay");
 const overlay2 = document.getElementById("overlay2");
 const overlay3 = document.getElementById("overlay3");
 const overlay4 = document.getElementById("overlay4");
+const overlay5 = document.getElementById("overlay5");
 
 const overlayReturnBtn1 = document.getElementById("overlayReturnBtn1");
 const overlayReturnBtn2 = document.getElementById("overlayReturnBtn2");
@@ -17,14 +18,24 @@ const closeBtn2 = document.getElementById("closeBtn2");
 
 const reasonInput = document.getElementById("reasonInput"); //早退理由
 const error = document.getElementById("error");
+const subject = document.getElementById("subject");
 
 // オーバーレイを有効にする
 attend.addEventListener("click", function () {
+    //今の自分がとっている授業を取得
     fetch("/get_subject", {
         method: "GET",
     })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => {
+            console.log(data);
+            if (data.subject_name) {
+                subject.innerHTML = `<p>授業名：${data.subject_name}</p>`;
+            } else {
+                subject.innerHTML = `<p>${data.message}</p>`;
+            }
+        });
+    //別ファイルの関数を使い現在地取得
     if (navigator.geolocation) {
         const watchId = navigator.geolocation.getCurrentPosition(
             success,
@@ -58,16 +69,20 @@ overlayReturnBtn2.addEventListener("click", function () {
 
 //出席ボタンを押したときに受理成功の文言を表示
 overlayAttendBtn.addEventListener("click", function () {
-    // const get_location = () => {
-    //     fetch("/get_location", {
-    //         method: "GET",
-    //     }).then((res) => {
-    //         console.log(res);
-    //     });
-    // };
     overlay.style.display = "none"; //オーバーレイを削除
+    const locationCheckResult = localStorage.getItem("locationCheckResult");
+    console.log("locationCheckResult", locationCheckResult);
+    // if (locationCheckResult === "true") {
+    //     fetch("/register_attendance", {
+    //         method:"GET"
+    //     }).then((res) => res.json()).then((data) => {
 
-    overlay3.style.display = "flex"; //受理成功を表示
+    //     })
+    // }
+
+    // overlay3.style.display = "flex"; //受理成功を表示
+
+    // overlay5.style.display = "flex";
 });
 
 closeBtn1.addEventListener("click", function () {

@@ -36,7 +36,7 @@ function success(position) {
     //     const range = getEstimatedRange(latitude, longitude, accuracy);
     //     console.log("範囲", range);
     // }
-
+    //現在の緯度と経度を送信し学校の敷地内かの判定結果を受け取る
     fetch("http://127.0.0.1:8000/check_location", {
         method: "POST",
         headers: {
@@ -55,6 +55,7 @@ function success(position) {
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
+            localStorage.setItem("locationCheckResult", data.inside);
         });
 }
 

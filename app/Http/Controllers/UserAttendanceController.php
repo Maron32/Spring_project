@@ -33,10 +33,11 @@ class UserAttendanceController extends Controller
 
             if (!$subject) continue;
 
+            $period_id = 1;
             // 時間割に今のコマ・曜日があるかチェック
             $timetable = $subject->timetables()
                 ->where('day_id', $dayOfWeekId)
-                ->where('period_id', $period->id)
+                ->where('period_id', $period_id) //ここを$period->id
                 ->first();
 
             if ($timetable) {
@@ -58,8 +59,12 @@ class UserAttendanceController extends Controller
         $accuracy = $request->input('accuracy');
         $isAccuracy = $request->input('isAccurate');
 
-        $schoolLat = 39.70596;
-        $schoolLon = 141.14183;
+        // $schoolLat = 39.70596;
+        // $schoolLon = 141.14183;
+
+        $schoolLat = 39.73973;
+        $schoolLon = 141.08785;
+
 
         $distance = $this->calculateDistance($latitude, $longitude, $schoolLat, $schoolLon);
 
@@ -69,8 +74,7 @@ class UserAttendanceController extends Controller
         } else {
             // 精度が悪い → 精度 + 誤差分を見込む
             $estimatedRange = $this->getEstimatedRange($latitude, $longitude, $accuracy);
-            $inside = $estimatedRange <= $accuracy + 30;
-            // $inside = $this->isInsideRange($latitude, $longitude, $estimatedRange);
+            $inside = $this->isInsideRange($latitude, $longitude, $estimatedRange);
         }
 
         return response()->json([
