@@ -32,9 +32,9 @@
         </tr>
 
         @foreach($subjects as $subject)
-        <tr>
+        <tr class="item">
           <td><input type="checkbox" class="check" name="subjects[]" value="{{ $subject->id }}" id="{{ $subject->id }}" data-id="{{ $subject->id }}"></td>
-          <td>{{ $subject->name }}</td>
+          <td class="subject_name">{{ $subject->name }}</td>
           <td>{{ $subject->term }}</td>
           <td>{{ $subject->user->name }}</td>
         </tr>
