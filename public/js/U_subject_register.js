@@ -4,6 +4,51 @@ const checks = document.querySelectorAll(".check");
 const addPlace = document.getElementById("addPlace");
 const textbox = document.querySelector("#searchInput");
 const list = document.querySelectorAll(".item");
+const when = document.querySelector('#when')
+
+// 未選択の期間を非表示にする
+function displayNoneByTerm() {
+    // 選択されている期間を取得
+    const term = when.value
+    list.forEach((item) => {
+        // 科目の期間を取得
+        const subject_term = item.querySelector('.subject_term').innerHTML
+        // 選んだ期間を異なれば、非表示にする
+        if (subject_term != term) {
+            item.style.display = 'none'
+        }
+    })
+}
+
+// 検索
+function searchName() {
+    // 検索テキストを取得
+    const regex = new RegExp(textbox.value);
+
+    list.forEach((item) => {
+        // 検索ワードがnullなら要素を全表示
+        if (!textbox.value) {
+            // 要素を表示する
+            item.style.display = "table-row";
+        } else {
+            // 科目名を取得
+            const subject_name =
+                item.querySelector(".subject_name").innerHTML;
+            // 科目名に検索ワードが含まれているか判定
+            const result = regex.test(subject_name);
+
+            if (!result) {
+                // 要素を非表示にする
+                item.style.display = "none";
+            } else {
+                // 要素を表示する
+                item.style.display = "table-row";
+            }
+        }
+    });
+
+    displayNoneByTerm()
+}
 
 //チェックボタンが押されたときに追加
 checks.forEach(function (check) {
@@ -60,30 +105,11 @@ checks.forEach(function (check) {
     });
 });
 
-// テキストが変化するたびに検索
-textbox.addEventListener("change", () => {
-    // 検索テキストを取得
-    const regex = new RegExp(textbox.value);
+// テキストが変化
+textbox.addEventListener("change", searchName);
 
-    list.forEach((item) => {
-        // 検索ワードがnullなら要素を全表示
-        if (!textbox.value) {
-            // 要素を表示する
-            item.style.display = "table-row";
-        } else {
-            // 科目名を取得
-            const subject_name =
-                item.querySelector(".subject_name").innerHTML;
-            // 科目名に検索ワードが含まれているか判定
-            const result = regex.test(subject_name);
+// セレクトボックスが変化
+when.addEventListener("change", searchName)
 
-            if (!result) {
-                // 要素を非表示にする
-                item.style.display = "none";
-            } else {
-                // 要素を表示する
-                item.style.display = "table-row";
-            }
-        }
-    });
-});
+// 読み込み時
+displayNoneByTerm()

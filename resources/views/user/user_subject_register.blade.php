@@ -12,7 +12,7 @@
 
     <!-- セレクトボックス・検索欄 -->
     <div id="userSelect">
-      <select name="when" id="when">
+      <select id="when">
         <option value="前期">前期</option>
         <option value="後期">後期</option>
       </select>
@@ -35,7 +35,7 @@
         <tr class="item">
           <td><input type="checkbox" class="check" name="subjects[]" value="{{ $subject->id }}" id="{{ $subject->id }}" data-id="{{ $subject->id }}"></td>
           <td class="subject_name">{{ $subject->name }}</td>
-          <td>{{ $subject->term }}</td>
+          <td class="subject_term">{{ $subject->term }}</td>
           <td>{{ $subject->user->name }}</td>
         </tr>
         @endforeach
