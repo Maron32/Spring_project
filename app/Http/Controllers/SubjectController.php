@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Day;
 use App\Models\EnrolledSubject;
+use App\Models\Period;
 use App\Models\Subject;
+use App\Models\Timetable;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Matcher\Subset;
 
@@ -13,7 +17,84 @@ class SubjectController extends Controller
 {
     //管理者の科目登録ページ
     public function admin_subject_register() {
-        return view('admin.admin_subject_register');
+        $teachers = User::where([['master', 1], ['delete', 0]])->get();
+        $terms = ['前期', '後期', '通年'];
+        // 曜日、コマを取得
+        $days = Day::all();
+        $periods = Period::all();
+        return view('admin.admin_subject_register', compact('teachers', 'terms', 'days', 'periods'));
+    }
+
+    // 管理者の科目登録確認ページ
+    public function admin_subject_register_confirm(Request $request) {
+        // ログインしていない場合は管理者ログインへ
+        if (!Auth::check()) {
+            return redirect('/admin/login');
+        } else {
+            $form = $request->all();
+            unset($form['_token']);
+
+            // 確認画面に送る情報を取得する
+            // 科目情報
+            $subject = [];
+            $name = $request->name;
+            $teacher = User::find($request->teacher);
+            $term = $request->term;
+            $lesson_days = $request->lesson_days;
+
+            // セッションに科目情報を登録する
+            session()->put([
+                'name' => $name,
+                'teacher' => $request->teacher,
+                'term' => $term,
+                'lesson_days' => $lesson_days,
+            ]);
+
+            // 曜日・コマ
+            $reqestDaytime = $request->daytime;
+            // セッションに曜日・コマを格納
+            session()->put('daytimes', $reqestDaytime);
+            $daytimes = [];
+            // 一つずつ取り出して、idから曜日・コマを検索し、配列に格納する
+            foreach($reqestDaytime as $daytime) {
+                $daytime_find['days'] = Day::find($daytime['day']);
+                $daytime_find['periods'] = Period::find($daytime['period']);
+                array_push($daytimes, $daytime_find);
+            }
+            return view('admin.admin_subject_register_confirm', compact('name', 'teacher', 'term', 'lesson_days','daytimes'));
+        }
+    }
+
+    public function admin_subject_create(Request $reqest) {
+        // ログインしていな場合は管理者ログインへ
+        if (!Auth::check()) {
+            return redirect('/admin/login');
+        }
+
+        $daytimes_session = session('daytimes');
+        // 科目情報を格納する
+        $subject = new Subject();
+        $subject->name = session('name');
+        $subject->teacher_id = session('teacher');
+        $subject->total_lectures = session('lesson_days');
+        $subject->term = session('term');
+        // 科目情報を登録する
+        // dd(session('lesson_days'));
+        $subject->save();
+
+        // 時間割テーブルに登録
+        foreach($daytimes_session as $daytime) {
+            $timetable = new Timetable();
+            $timetable->subject_id = $subject->id;
+            $timetable->day_id = $daytime['day'];
+            $timetable->period_id = $daytime['period'];
+            // 時間割を登録する
+            $timetable->save();
+        }
+        // セッションの削除
+        session()->forget(['name', 'teacher', 'lesson_days', 'term',]);
+        session()->forget('daytimes');
+        return redirect('/admin');
     }
 
     //ユーザーの科目登録ページ

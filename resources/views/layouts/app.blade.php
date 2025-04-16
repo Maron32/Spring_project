@@ -16,13 +16,19 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    
-    <!-- CSS -->
-    <!-- ユーザートップ -->
-    <link rel="stylesheet" href="{{ asset('css/U_top-style.css') }}">
-    <!-- ユーザー登録 -->
-    <link rel="stylesheet" href="{{ asset('css/U_register-style.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        header {
+            background: linear-gradient(90deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-weight: lighter;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 
 <header>
@@ -32,8 +38,7 @@
     @yield('content')
 </body>
 
-<script src="{{ asset('js/U_top.js') }}"></script>
-<script src="{{ asset('js/U_register.js') }}"></script>
-<script src="{{ asset('js/gps.js') }}"></script>
+
+
 </body>
 </html>
