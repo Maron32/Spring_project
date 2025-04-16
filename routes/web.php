@@ -76,3 +76,5 @@ Route::post('/check_location', [UserAttendanceController::class, 'check']);
 Route::get('/get_subject', [UserAttendanceController::class, 'get_subject']);
 //出席登録
 Route::post('/register_attendance', [UserAttendanceController::class, 'register_attendance']);
+
+Route::post('/leaving_early', [UserAttendanceController::class, 'leaving_early']);

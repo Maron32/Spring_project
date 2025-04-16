@@ -18,7 +18,8 @@ const closeBtn2 = document.getElementById("closeBtn2");
 
 const reasonInput = document.getElementById("reasonInput"); //早退理由
 const error = document.getElementById("error");
-const subject = document.getElementById("subject");
+const subject = document.getElementById("subject"); //出席登録の授業名
+const leaving_subject = document.getElementById("leaving_subject"); //早退登録の授業名
 
 // オーバーレイを有効にする
 attend.addEventListener("click", function () {
@@ -31,6 +32,7 @@ attend.addEventListener("click", function () {
             console.log(data);
             if (data.subject_name) {
                 localStorage.setItem("subject_id", data.subject_id);
+                localStorage.setItem("subject_name", data.subject_name);
                 subject.innerHTML = `<p>授業名：${data.subject_name}</p>`;
             } else {
                 subject.innerHTML = `<p>${data.message}</p>`;
@@ -51,12 +53,14 @@ attend.addEventListener("click", function () {
 
 // オーバーレイ2を有効にする
 goHome.addEventListener("click", function () {
+    let subject_name = localStorage.getItem("subject_name");
+    leaving_subject.innerHTML = `<p>${subject_name}</p>`;
     overlay2.style.display = "flex";
 });
 
 // オーバーレイ内の戻るボタン
 overlayReturnBtn1.addEventListener("click", function () {
-    localStorage.clear();
+    localStorage.removeItem("locationCheckResult");
     overlay.style.display = "none";
 });
 
@@ -98,7 +102,7 @@ overlayAttendBtn.addEventListener("click", function () {
 });
 
 closeBtn1.addEventListener("click", function () {
-    localStorage.clear();
+    localStorage.removeItem("locationCheckResult");
     overlay3.style.display = "none";
 });
 
@@ -109,11 +113,27 @@ overlayGoHomeBtn.addEventListener("click", function () {
         reasonInput.style.backgroundColor = "pink";
         error.textContent = "早退理由を入力してください。";
     } else {
-        reasonInput.value = "";
-        error.textContent = "";
-        overlay2.style.display = "none";
-
-        overlay4.style.display = "flex";
+        console.log(reasonInput.value);
+        fetch("/leaving_early", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            body: JSON.stringify({
+                subject_id: localStorage.getItem("subject_id"),
+                reason: reasonInput.value,
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                reasonInput.value = "";
+                error.textContent = "";
+                overlay2.style.display = "none";
+                overlay4.style.display = "flex";
+            });
     }
 });
 
@@ -129,6 +149,6 @@ reasonInput.addEventListener("input", function () {
 });
 
 closeBtn3.addEventListener("click", function () {
-    localStorage.clear();
+    localStorage.removeItem("locationCheckResult");
     overlay5.style.display = "none";
 });

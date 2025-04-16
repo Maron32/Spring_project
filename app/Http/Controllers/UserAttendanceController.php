@@ -55,7 +55,7 @@ class UserAttendanceController extends Controller
             }
         }
         return response()->json([
-                    'subject_id' => 1,
+                    'subject_id' => 2,
                     'subject_name' => "Java基礎",
                 ]);
         // return response()->json(['message' => '現在受ける授業はありません']);
@@ -91,6 +91,26 @@ class UserAttendanceController extends Controller
             'inside' => $inside,
             'distance' => $distance,
         ]);
+    }
+
+    public function leaving_early(Request $request) {
+        // $user_id = Auth::id();
+        $user_id = 1;
+        $subject_id = $request->input('subject_id');
+
+        $enrolledSubject = EnrolledSubject::where('student_id', $user_id)
+            ->where('subject_id', $subject_id)
+            ->first();
+
+        $latestAttendance = AttendanceRecord::where('enrolled_subject_id', $enrolledSubject->id)
+            ->latest('created_at') // or ->orderBy('id', 'desc')
+            ->first();
+
+        $latestAttendance->attendance_status_id = 2; // 2: 早退
+        $latestAttendance->reason = $request->input('reason');
+        $latestAttendance->save();
+
+        return response()->json(['message' => '早退登録が完了しました']);
     }
 
     //出席登録

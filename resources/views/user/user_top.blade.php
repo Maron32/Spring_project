@@ -96,7 +96,7 @@
       <p>本日の科目</p>
 
       <!-- ここに科目を表示 -->
-      <div></div>
+      <div id="leaving_subject"></div>
 
 
       <!-- 理由 -->
