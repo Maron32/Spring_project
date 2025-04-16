@@ -22,10 +22,12 @@ class UserAttendanceController extends Controller
         $user_id = 1;
         $now = Carbon::now('Asia/Tokyo');
         $dayOfWeekId = $now->dayOfWeek;
+        $fiveMinutesAgo = $now->copy()->subMinutes(3)->format('H:i:s'); //3分まえまで
         $time = $now->format('H:i:s');
 
         if ($dayOfWeekId >= 1 && $dayOfWeekId <= 5) {
             $period = Period::where('start_time', '<=', $time)
+                ->where('start_time', '>=', $fiveMinutesAgo)
                 ->where('finish_time', '>=', $time)
                 ->first();
         }
