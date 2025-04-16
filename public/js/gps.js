@@ -54,7 +54,7 @@ function success(position) {
     })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
+            console.log("範囲内か" + data.inside);
             localStorage.setItem("locationCheckResult", data.inside);
         });
 }

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Period;
 use App\Models\Timetable;
 use App\Models\EnrolledSubject;
+use App\Models\AttendanceRecord;
 
 class UserAttendanceController extends Controller
 {
@@ -15,6 +16,7 @@ class UserAttendanceController extends Controller
         return view('user.user_top');
     }
 
+    //今受けている授業の取得
     public function get_subject(Request $request) {
         // $user_id = Auth::id();
         $user_id = 1;
@@ -43,15 +45,21 @@ class UserAttendanceController extends Controller
             if ($timetable) {
                 // 見つかったらその授業名を返す
                 return response()->json([
+                    'subject_id' => $subject->id,
                     'subject_name' => $subject->class_name,
                     'period' => $period->period,
                     'day' => $dayOfWeekId,
                 ]);
             }
         }
-        return response()->json(['message' => '現在受ける授業はありません']);
+        return response()->json([
+                    'subject_id' => 1,
+                    'subject_name' => "Java基礎",
+                ]);
+        // return response()->json(['message' => '現在受ける授業はありません']);
     }
 
+    //学校の敷地内か
     public function check(Request $request)
     {
         $latitude = $request->input('latitude');
@@ -83,6 +91,24 @@ class UserAttendanceController extends Controller
         ]);
     }
 
+    //出席登録
+    public function register_attendance(Request $request)
+    {
+        // $user_id = Auth::id();
+        $user_id = 1;
+        $subject_id = $request->input('subject_id');
+        $enrolledSubject = EnrolledSubject::where('student_id', $user_id)
+            ->where('subject_id', $subject_id)
+            ->first();
+
+        AttendanceRecord::create([
+            'enrolled_subject_id' => $enrolledSubject->id,
+            'attendance_status_id' => 1, //出席
+        ]);
+
+        return response()->json(['message' => '出席登録が完了しました']);
+    }
+
     // 距離計算（Haversine式）
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)
     {
@@ -107,8 +133,7 @@ class UserAttendanceController extends Controller
     // 範囲内かどうか判定
     private function isInsideRange($lat, $lon, $range)
     {
-        return $lat >= $range['minLat'] && $lat <= $range['maxLat'] &&
-               $lon >= $range['minLon'] && $lon <= $range['maxLon'];
+        return $lat >= $range['minLat'] && $lat <= $range['maxLat'] && $lon >= $range['minLon'] && $lon <= $range['maxLon'];
     }
 
     // 精度が悪いときのざっくり範囲

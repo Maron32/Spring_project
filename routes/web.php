@@ -74,3 +74,5 @@ Route::get('/user',[UserAttendanceController::class,'index'])->name('user');
 Route::post('/check_location', [UserAttendanceController::class, 'check']);
 //教科の取得
 Route::get('/get_subject', [UserAttendanceController::class, 'get_subject']);
+//出席登録
+Route::post('/register_attendance', [UserAttendanceController::class, 'register_attendance']);

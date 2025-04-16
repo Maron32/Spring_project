@@ -30,6 +30,7 @@ attend.addEventListener("click", function () {
         .then((data) => {
             console.log(data);
             if (data.subject_name) {
+                localStorage.setItem("subject_id", data.subject_id);
                 subject.innerHTML = `<p>授業名：${data.subject_name}</p>`;
             } else {
                 subject.innerHTML = `<p>${data.message}</p>`;
@@ -55,6 +56,7 @@ goHome.addEventListener("click", function () {
 
 // オーバーレイ内の戻るボタン
 overlayReturnBtn1.addEventListener("click", function () {
+    localStorage.clear();
     overlay.style.display = "none";
 });
 
@@ -71,21 +73,32 @@ overlayReturnBtn2.addEventListener("click", function () {
 overlayAttendBtn.addEventListener("click", function () {
     overlay.style.display = "none"; //オーバーレイを削除
     const locationCheckResult = localStorage.getItem("locationCheckResult");
+    const subject_id = localStorage.getItem("subject_id");
     console.log("locationCheckResult", locationCheckResult);
-    // if (locationCheckResult === "true") {
-    //     fetch("/register_attendance", {
-    //         method:"GET"
-    //     }).then((res) => res.json()).then((data) => {
-
-    //     })
-    // }
-
-    // overlay3.style.display = "flex"; //受理成功を表示
-
-    // overlay5.style.display = "flex";
+    if (locationCheckResult === "true") {
+        fetch("/register_attendance", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            body: JSON.stringify({
+                subject_id: subject_id,
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                overlay3.style.display = "flex"; //受理成功を表示
+            });
+    } else {
+        overlay5.style.display = "flex";
+    }
 });
 
 closeBtn1.addEventListener("click", function () {
+    localStorage.clear();
     overlay3.style.display = "none";
 });
 
@@ -113,4 +126,9 @@ reasonInput.addEventListener("input", function () {
     if (reasonInput.value) {
         reasonInput.style.backgroundColor = "white";
     }
+});
+
+closeBtn3.addEventListener("click", function () {
+    localStorage.clear();
+    overlay5.style.display = "none";
 });
