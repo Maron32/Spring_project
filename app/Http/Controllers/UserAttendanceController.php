@@ -45,7 +45,7 @@ class UserAttendanceController extends Controller
             // 欠席早退日数
             $abstance_days = AttendanceRecord::where('enrolled_subject_id', $subject->id)->whereIn('attendance_status_id', [2,4])->count();
             // 見込出席率
-            $prospect_attendance_rate = ceil(($subject->subject->total_lectures - $abstance_days - $officially_abstance_total) / ($subject->subject->total_lectures - $officially_abstance_total) * 100);
+            $prospect_attendance_rate = floor(($subject->subject->total_lectures - $abstance_days - $officially_abstance_total) / ($subject->subject->total_lectures - $officially_abstance_total) * 100);
             $attendance_info[$subject->subject->id] = [
                 'attendanceDays' => $attendance_total,
                 'lecturesToDate' => $subject->subject->completed_lectures,
