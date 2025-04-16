@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AdminAttendanceController extends Controller
@@ -22,7 +22,11 @@ class AdminAttendanceController extends Controller
 
     // 科目ごとの生徒の出席状況
     public function attendance_status(Request $request) {
-        return view('admin.attendance_status');
+        if (!Auth::check()) {
+            return redirect('/login');
+        } else {
+            return view('admin.attendance_status');
+        }
     }
 
     // 生徒の検索
