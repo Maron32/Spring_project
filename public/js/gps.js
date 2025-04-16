@@ -1,4 +1,3 @@
-//学校の緯度、経度39.70596, 141.14183;
 let schoollatitude = 39.70596; //緯度
 let schoollongitude = 141.14183; //経度
 
@@ -10,37 +9,53 @@ function success(position) {
     console.log("緯度" + latitude, "経度" + longitude, "精度" + accuracy);
     let lat = latitude; //緯度を変数に代入
     let long = longitude; //経度を変数に代入
-    let sh_lat = schoollatitude; //学校の緯度を変数に代入
-    let sh_long = schoollongitude; //学校の経度を変数に代入
+    let isAccurate = accuracy <= 18;
+    console.log("精度" + isAccurate);
 
-    if (accuracy <= 18) {
-        const isInside = isWithinSchool(lat, long);
-        console.log(isInside ? "学校の敷地内です" : "学校の外にいます");
-    } else {
-        const estimatedDistance = getDistance(
-            latitude,
-            longitude,
-            schoollatitude,
-            schoollongitude
-        );
-        console.log("推定距離", estimatedDistance, "精度（誤差）", accuracy);
-
-        if (estimatedDistance <= accuracy + 30) {
-            console.log("※精度が悪いけど、おそらく学校の敷地内です");
-        } else {
-            console.log("※精度が悪く、学校の外と推定されます");
-        }
-
-        // 範囲情報も表示（デバッグ用）
-        const range = getEstimatedRange(latitude, longitude, accuracy);
-        console.log("範囲", range);
-    }
     // if (accuracy <= 18) {
-    //     getDistance(lat, long, sh_lat, sh_long); //距離計算関数を呼び出す
+    //     const isInside = isWithinSchool(lat, long);
+    //     console.log(isInside);
+
+    //     console.log(isInside ? "学校の敷地内です" : "学校の外にいます");
     // } else {
-    //     let range = getEstimatedRange(lat, long, accuracy); //精度が悪い場合は範囲を計算
-    //     console.log(range);
+    //     const estimatedDistance = getDistance(
+    //         latitude,
+    //         longitude,
+    //         schoollatitude,
+    //         schoollongitude
+    //     );
+    //     console.log("推定距離", estimatedDistance, "精度（誤差）", accuracy);
+
+    //     if (estimatedDistance <= accuracy + 30) {
+    //         console.log("※精度が悪いけど、学校の敷地内");
+    //     } else {
+    //         console.log("※精度が悪く、学校の外");
+    //     }
+
+    //     // 範囲情報も表示（デバッグ用）
+    //     const range = getEstimatedRange(latitude, longitude, accuracy);
+    //     console.log("範囲", range);
     // }
+
+    fetch("http://127.0.0.1:8000/check_location", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
+        },
+        body: JSON.stringify({
+            latitude: latitude,
+            longitude: longitude,
+            accuracy: accuracy,
+            isAccurate: isAccurate,
+        }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        });
 }
 
 //学校との距離を計算する関数
@@ -73,7 +88,7 @@ function isWithinSchool(lat, lon) {
     return distance <= 30; // 30m以内なら敷地内
 }
 
-function error() {
+function gps_error() {
     alert("位置情報が取得出来ません");
 }
 
@@ -95,17 +110,3 @@ const options = {
     maximumAge: 0,
     timeout: 5000,
 };
-
-if (navigator.geolocation) {
-    const watchId = navigator.geolocation.watchPosition(
-        success,
-        error,
-        options
-    );
-    // setTimeout(function () {
-    //     navigator.geolocation.clearWatch(watchId);
-    //     console.log("処理停止");
-    // }, 5000);
-} else {
-    alert("この端末は位置情報に対応していません。");
-}

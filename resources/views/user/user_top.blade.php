@@ -130,7 +130,6 @@
 
   </div>
 
-  <script type="text/javascript" src="top.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/U_top-style.css') }}">
     <!-- ユーザー登録 -->
     <link rel="stylesheet" href="{{ asset('css/U_register-style.css') }}">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <header>
