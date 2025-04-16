@@ -49,6 +49,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     //管理者の科目登録ページのルーティング
     Route::get('/admin_subject_register', [SubjectController::class, 'admin_subject_register']);
+    // 管理者の科目一覧ページのルーティング
+    Route::get('/admin_subject_all', [SubjectController::class, 'admin_subject_all']);
     // 管理者の科目登録確認ページへのルーティング
     Route::post('/admin_subject_register_confirm', [SubjectController::class, 'admin_subject_register_confirm']);
     // 管理者の科目登録の登録へのルーティング
