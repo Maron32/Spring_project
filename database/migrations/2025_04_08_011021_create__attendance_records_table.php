@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('enrolled_subject_id')->constrained(); // 履修科目ID
             $table->foreignId('attendance_status_id')->constrained(); // 出席状況ID
             $table->text('reason')->nullable(); // 理由
-            $table->date('date'); // 日付
             $table->timestamps();
         });
     }
