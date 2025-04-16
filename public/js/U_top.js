@@ -20,6 +20,11 @@ const error = document.getElementById("error");
 
 // オーバーレイを有効にする
 attend.addEventListener("click", function () {
+    fetch("/get_subject", {
+        method: "GET",
+    })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
     if (navigator.geolocation) {
         const watchId = navigator.geolocation.getCurrentPosition(
             success,

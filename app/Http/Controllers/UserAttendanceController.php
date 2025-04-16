@@ -3,12 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Period;
+use App\Models\Timetable;
+use App\Models\EnrolledSubject;
 
 class UserAttendanceController extends Controller
 {
     // ユーザーのトップ画面
     public function index(Request $request){
         return view('user.user_top');
+    }
+
+    public function get_subject(Request $request) {
+        // $user_id = Auth::id();
+        $user_id = 1;
+        $now = Carbon::now('Asia/Tokyo');
+        $dayOfWeekId = $now->dayOfWeek;
+        $time = $now->format('H:i:s');
+
+        if ($dayOfWeekId >= 1 && $dayOfWeekId <= 5) {
+            $period = Period::where('start_time', '<=', $time)
+                ->where('finish_time', '>=', $time)
+                ->first();
+        }
+        $enrolledSubjects = EnrolledSubject::where('student_id', $user_id)->with('subject')->get();
+        foreach ($enrolledSubjects as $enrolledSubject) {
+            $subject = $enrolledSubject->subject;
+
+            if (!$subject) continue;
+
+            // 時間割に今のコマ・曜日があるかチェック
+            $timetable = $subject->timetables()
+                ->where('day_id', $dayOfWeekId)
+                ->where('period_id', $period->id)
+                ->first();
+
+            if ($timetable) {
+                // 見つかったらその授業名を返す
+                return response()->json([
+                    'subject_name' => $subject->class_name,
+                    'period' => $period->period,
+                    'day' => $dayOfWeekId,
+                ]);
+            }
+        }
+        return response()->json(['message' => '現在受ける授業はありません']);
     }
 
     public function check(Request $request)

@@ -15,4 +15,9 @@ class Subject extends Model
     {
         return $this->belongsTo(User::class, 'teacher_id', 'id');
     }
+
+    public function timetables()
+    {
+        return $this->hasMany(Timetable::class, 'subject_id');
+    }
 }

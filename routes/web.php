@@ -72,3 +72,5 @@ Route::get('/user',[UserAttendanceController::class,'index'])->name('user');
 
 //現在地判定の非同期処理
 Route::post('/check_location', [UserAttendanceController::class, 'check']);
+//教科の取得
+Route::get('/get_subject', [UserAttendanceController::class, 'get_subject']);

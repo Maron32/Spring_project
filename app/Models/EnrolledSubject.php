@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class EnrolledSubject extends Model
 {
     use HasFactory;
+
+    public function subject()
+{
+    return $this->belongsTo(Subject::class);
+}
 }
