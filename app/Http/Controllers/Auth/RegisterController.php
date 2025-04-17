@@ -45,9 +45,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         // 学科を取得
-        $departments = Department::all();
+        $departments = Department::where('id', '!=', 99)->get();
         // 学年を取得
-        $grades = Grade::all();
+        $grades = Grade::where('id', '!=', 99)->get();
 
         // viewに学科、学年を渡す
         return view('auth.register', compact('departments', 'grades'));
