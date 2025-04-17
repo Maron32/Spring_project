@@ -61,4 +61,9 @@ class User extends Authenticatable
     public function getData(){
         return $this->name.'('.$this->email.')';
     }
+
+    public function enrolledSubjects()
+{
+    return $this->hasMany(EnrolledSubject::class);
+}
 }
