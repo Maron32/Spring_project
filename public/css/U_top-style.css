@@ -2,39 +2,76 @@ html,
 body {
     margin: 0;
     padding: 0;
-}
-
-table,
-th,
-td {
+  }
+  
+  /* table,
+  th,
+  td {
     border: 1px solid;
     border-collapse: collapse;
-}
-
-#container {
-    text-align: center;
-    width: 700px;
-    margin: 0 auto;
-}
-
-table {
+  } */
+  
+  
+  /* table {
     margin: 10px auto;
-}
+    }
+    */
+    /* th,
+    td {
+      padding: 15px 50px 15px 50px;
+      font-size: 18px;
+    } */
+      
+      #container {
+        text-align: center;
+        width: 700px;
+        margin: 0 auto;
+      }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px auto;
+    font-size: 20px;
+    /* border-collapse: separate; */
+    /* border-collapse: collapse; */
+  
+    border-spacing: 150px 0;
+  }
+  
+  table th:nth-child(1) {
+    width: 10%;
+  
+  }
+  
+  table th:nth-child(2) {
+    width: 30%;
+  }
+  
+  table th:nth-child(3) {
+    width: 30%;
+  }
+  
+  table th:nth-child(4) {
+    width: 30%;
+  }
+  
+  table th {
+    border-top: 1px solid black;
+  }
+  
+  table th,
+  table td {
+    border-bottom: 1px solid black;
+  }
 
-th,
-td {
-    padding: 15px 50px 15px 50px;
-    font-size: 18px;
-}
-
-.attend {
+  .attend {
     width: 120px;
     height: 45px;
     border-radius: 10px;
     font-size: large;
     background-color: rgb(55, 181, 254);
-    border: 1px solid;
-    margin-right: 20px;
+    border: 1px solid;  
+    margin: 20px 20px;
     color: white;
 }
 
@@ -46,24 +83,30 @@ td {
     background-color: rgb(55, 254, 115);
     border: 1px solid;
     color: white;
-}
-
-.attend:hover {
-    background-color: black;
+  }
+  
+  .attend:hover {
+    background-color: white;
     color: rgb(55, 181, 254);
-}
-
-.goHome:hover {
-    background-color: black;
+  }
+  
+  .goHome:hover {
+    background-color: white;
     color: rgb(55, 254, 115);
 }
 
 #button {
     margin-top: 12px;
     text-align: right;
-}
+  }
 
-.flex {
+  .box{
+    margin: 0 22%;
+  }
+  .font{
+    font-size: x-large;
+  }
+  .flex {
     display: flex;
 }
 
@@ -81,6 +124,7 @@ td {
 /* ポップアップ1*/
 #overlay {
     position: fixed;
+    text-align: center;
     top: 0;
     left: 25%;
     width: 50%;
@@ -93,11 +137,20 @@ td {
     flex-direction: column;
     border: 10px solid rgb(124, 246, 255);
     border-radius: 20px;
-}
+  }
 
-/* ポップアップ2*/
-#overlay2 {
+  #overlay h3{
+    margin: 30px auto;
+  }
+
+  #overlay2 h3{
+    margin: 30px auto;
+  }
+  
+  /* ポップアップ2*/
+  #overlay2 {
     position: fixed;
+    text-align: center;
     top: 0;
     left: 25%;
     width: 50%;
@@ -170,10 +223,10 @@ td {
     border-radius: 7px;
     border: 1px solid black;
     background-color: rgb(255, 92, 92);
-}
-
-#closeBtn1:hover {
-    background-color: black;
+  }
+  
+  #closeBtn1:hover{
+    background-color: white;
     color: rgb(255, 92, 92);
 }
 
@@ -184,10 +237,10 @@ td {
     border-radius: 7px;
     border: 1px solid black;
     background-color: rgb(255, 92, 92);
-}
-
-#closeBtn2:hover {
-    background-color: black;
+  }
+  
+  #closeBtn2:hover{
+    background-color: white;
     color: rgb(255, 92, 92);
 }
 
@@ -214,10 +267,10 @@ td {
     /* margin: 100px auto; */
     font-size: large;
     color: white;
-}
-
-#overlayReturnBtn1:hover {
-    background-color: black;
+  }
+  
+  #overlayReturnBtn1:hover {
+    background-color: white;
     color: rgb(255, 92, 92);
 }
 
@@ -230,10 +283,10 @@ td {
     /* margin: 100px auto; */
     font-size: large;
     color: white;
-}
-
-#overlayReturnBtn2:hover {
-    background-color: black;
+  }
+  
+  #overlayReturnBtn2:hover {
+    background-color: white;
     color: rgb(255, 92, 92);
 }
 
@@ -245,10 +298,10 @@ td {
     border: 1px solid black;
     font-size: large;
     color: white;
-}
-
-#overlayAttendBtn:hover {
-    background-color: black;
+  }
+  
+  #overlayAttendBtn:hover {
+    background-color: white;
     color: rgb(139, 178, 255);
 }
 
@@ -260,10 +313,10 @@ td {
     border: 1px solid black;
     font-size: large;
     color: white;
-}
-
-#overlayGoHomeBtn:hover {
-    background-color: black;
+  }
+  
+  #overlayGoHomeBtn:hover {
+    background-color: white;
     color: rgb(139, 178, 255);
 }
 

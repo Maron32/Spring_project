@@ -159,7 +159,8 @@ class SubjectController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         } else {
-            return view('admin.admin_subject_all');
+            $items = Subject::all();
+            return view('admin.admin_subject_all',['items' => $items]);
         }
     }
 }

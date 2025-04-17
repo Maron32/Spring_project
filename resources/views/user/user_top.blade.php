@@ -10,8 +10,39 @@
       <button type="button" class="goHome" id="goHome">早退</button>
     </div>
 
-
     <table>
+      <tr>
+        <th>     </th>
+        <th>科目名</th>
+        <th>年度</th>
+        <th>担当教員</th>
+      </tr>
+
+      <tr>
+        <td><input type="radio" class="check" data-id="1"></td>
+        <td>Java</td>
+        <td>前期</td>
+        <td>大坪</td>
+      </tr>
+
+      <tr>
+        <td><input type="radio" class="check" data-id="2"></td>
+        <td>Python</td>
+        <td>前期</td>
+        <td>高橋</td>
+      </tr>
+
+      <tr>
+        <td><input type="radio" class="check" data-id="3"></td>
+        <td>Unity</td>
+        <td>前期</td>
+        <td>高田</td>
+      </tr>
+
+    </table>
+  </div>
+
+    <!-- <table>
       <tr>
         <th></th>
         <th>月</th>
@@ -52,26 +83,27 @@
         <td></td>
         <td></td>
       </tr>
-    </table>
+    </table> -->
 
-    <div class="flex">
-      <div>出席数</div>
-      <div>現在までの授業日数</div>
-      <div>必要出席数</div>
-      <div>見込み出席率</div>
+    <!-- 出席率 -->
+    <div class="box">
+      <div class="flex">
+        <div>出席数</div>
+        <div>現在までの授業日数</div>
+        <div>必要出席数</div>
+        <div>見込み出席率</div>
+      </div>
+
+      <div id="days">
+        <div class="font">0</div>
+        <div class="font">45</div>
+        <div class="font">90</div>
+        <div class="font">0%</div>
+      </div>
+
+      <!-- 下線 -->
+      <p class="underline"></p>
     </div>
-
-    <div id="days">
-      <div>xxx</div>
-      <div>xxx</div>
-      <div>xxx</div>
-      <div>xxx</div>
-    </div>
-
-    <!-- 下線 -->
-    <p class="underline"></p>
-
-
     <!-- オーバーレイ1(出席) -->
     <div id="overlay">
       <h3>出席</h3>

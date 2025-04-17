@@ -21,15 +21,17 @@
             </div>
             <div class="border_line"></div>
             <div class="head-item">
-                <div class="item-list" id="java">
+                @if(isset($items))
+                    @foreach ($items as $subject)
                         <ul class="list-a">
-                            <li class="head-list1">javascript</li>
-                            <li class="head-list2">金野宇晃</li>
-                            <li class="head-list2">30日</li>
+                            <li class="head-list1">{{ $subject->name }}</li>
+                            <li class="head-list2">{{ $subject->teacher_id }}</li>
+                            <li class="head-list2">{{ $subject->total_lectures }}</li>
                             <li class="head-list2"><button type="submit" class="button1">編集</button></li>
                             <li class="head-list2"><button type="submit" class="button2">削除</button></li>
                         </ul>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

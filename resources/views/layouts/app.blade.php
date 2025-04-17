@@ -22,11 +22,12 @@
             background: linear-gradient(90deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
         }
         h1 {
-            margin: 0;
-            padding: 0;
+            padding: 10px 40px;
             color: white;
-            font-weight: lighter;
+            /* font-weight: lighter; */
+            font-size: 35px;
             margin-left: 20px;
+            height: 70px;
         }
     </style>
 </head>
