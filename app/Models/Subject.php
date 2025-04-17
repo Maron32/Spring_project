@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Subject extends Model
 {
@@ -16,8 +18,8 @@ class Subject extends Model
         return $this->belongsTo(User::class, 'teacher_id', 'id');
     }
 
-    public function timetables()
+    public function enrolled_subjects(): HasMany
     {
-        return $this->hasMany(Timetable::class, 'subject_id');
+        return $this->hasMany(EnrolledSubject::class);
     }
 }

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'department_id',
         'grade_id',
+        'master',
     ];
 
     /**

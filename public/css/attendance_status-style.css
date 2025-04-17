@@ -1,0 +1,126 @@
+body{
+    margin: 0;
+}
+#item{
+    display: flex;
+    height: 1000px;
+}
+.list{
+    width: 200px;
+    /* height: 550px; */
+    background: linear-gradient(180deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
+}
+.subject{
+    margin-top: 20px;
+    margin-left: 60px;
+}
+#main-class{
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+#main-subject{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+#main-list{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+#main-attend{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 180px;
+    height: 45px;
+    border-radius: 15px 0px 0px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgb(199, 234, 236);
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+.one{
+    margin-top: 60px;
+}
+h2{
+    margin-top: 40px;
+    /* margin-left: 30px; */
+}
+.attendance{
+    width: 100%;
+    margin: 0 100px;
+}
+
+.item{
+    margin: 0 50px;
+}
+
+.student{
+    width: 700px;
+    height: 40px;
+    border: 2.5px solid lightgray;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 150px 10px 180px 70px 10px 80px 10px 80px 10px 80px;
+    border-radius: 6px;
+}
+a{
+    margin-left: 20px;
+}
+#day{
+    margin-left: 19px;
+}
+#now{
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    margin-left: 14px;
+}
+#attend{
+    margin-left: 21px;
+}
+.contents{
+    margin-left: 407px;
+}
+.day{
+    margin: 0;
+    text-align: center;
+}
+.now{
+    margin: 0;
+    text-align: center;
+}
+.attend{
+    margin: 0;
+    text-align: center;
+}

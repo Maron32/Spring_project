@@ -1,0 +1,136 @@
+body{
+    margin: 0;
+}
+#item{
+    display: flex;
+    height: 1000px;
+}
+.list{
+    width: 200px;
+    /* height: 542px; */
+    background: linear-gradient(180deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
+}
+.subject{
+    margin-top: 20px;
+    margin-left: 60px;
+}
+#main-class{
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+#main-subject{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+#main-list{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 180px;
+    height: 45px;
+    border-radius: 15px 0px 0px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgb(199, 234, 236);
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+#main-attend{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 140px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+.one{
+    margin-top: 60px;
+}
+.main{
+    width: 100%;
+    margin: 10px auto;
+    
+}
+h2{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.head{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.head-item{
+    justify-content: space-around;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.border_line{
+    border-top: 2px solid black;
+    margin-bottom: 20px;
+}
+.head-list1{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+.head-list2{
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+}
+
+.item-list2{
+    color: black;
+    text-decoration: none;
+}
+
+.list-a{
+    display: flex;
+    padding: 0;
+}
+
+.button1{
+    width: 90px;
+    height: 40px;
+    background-color: #4FDD59;
+    color: white;
+    border-radius: 6px;
+    border-color: white;
+    font-size: 16px;
+}
+
+.button2{
+    width: 90px;
+    height: 40px;
+    background-color: #FF8C7F;
+    color: white;
+    border-radius: 6px;
+    border-color: white;
+    font-size: 16px;
+}

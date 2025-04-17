@@ -152,4 +152,14 @@ class SubjectController extends Controller
             return redirect('/user/user_top');
         }
     }
+
+    // 管理者の科目一覧
+    public function admin_subject_all(Request $reqest){
+        // ログインしていない場合はログインページに遷移
+        if (!Auth::check()) {
+            return redirect('/login');
+        } else {
+            return view('admin.admin_subject_all');
+        }
+    }
 }

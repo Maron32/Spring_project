@@ -1,91 +1,67 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>管理者科目登録</title>
-</head>
-<body>
-  <h1>管理者の科目登録ページ</h1>
-  <form action="/admin_subject_register_confirm" method="post" enctype="multipart/form-data">
-    @csrf
+@extends('layouts.app')
 
-    <div>
-      <label>科目名</label>
-      <input type="text" name="name">
-    </div>
-
-    <div>
-      <label>担当教師</label>
-      <select name="teacher" id="">
-        <option value="" disabled>選択してください</option>
-        @foreach($teachers as $teacher)
-        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-        @endforeach
-      </select>
-    </div>
-
-    <div>
-      <label>期間</label>
-      <select name="term" id="term">
-        <option value="" disabled>選択してください</option>
-        @foreach($terms as $term)
-        <option value="{{ $term }}">{{ $term }}</option>
-        @endforeach
-      </select>
-    </div>
-
-    <div>
-      <label>授業日数</label>
-      <input type="number" name="lesson_days">
-    </div>
-
-    <div>
-      <div>
-        <div>
-          <label>曜日</label>
-          <select name="daytime[1][day]" id="">
-            <option value="" disabled>選択してください</option>
-            @foreach($days as $day)
-            <option value="{{ $day->id }}">{{ $day->name }}</option>
-            @endforeach
-          </select>
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/A_subject_register.css') }}">
+<form action="/admin_subject_register_confirm" method="post" enctype="multipart/form-data">
+  @csrf
+    <div id="item">
+        <div class="list">
+            <button id="main-class" class="one" onclick="window.location.href='admin'">授業</button><br>
+            <button id="main-subject" class="second">科目登録</button>
+            <button id="main-list" class="third" onclick="window.location.href='admin_subject_all'">科目一覧</button>
+            <button id="main-attend" class="forth" onclick="window.location.href='attend.html'">出席状況</button>
         </div>
-        <div>
-          <label>コマ数</label>
-          <select name="daytime[1][period]" id="">
-            <option value="" disabled>選択してください</option>
-            @foreach($periods as $period)
-            <option value="{{ $period->id }}">{{ $period->periods }}コマ目</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
+        <div class="register">
 
-      <div>
-        <div>
-          <label>曜日</label>
-          <select name="daytime[2][day]" id="">
-            <option value="" disabled>選択してください</option>
-            @foreach($days as $day)
-            <option value="{{ $day->id }}">{{ $day->name }}</option>
-            @endforeach
-          </select>
+            <h2>科目登録</h2>
+            <div class="main">
+                <a>授業名</a><br>
+                <input type="text" id="class-name" name="name" required><br>
+
+                <a>担当教師</a><br>
+                <select id="teacher" name="teacher">
+                @foreach($teachers as $teacher)
+                  <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                @endforeach
+                </select><br>
+
+                <a>授業期間</a><br>
+                <select name="term" id="term">
+                  @foreach($terms as $term)
+                  <option value="{{ $term }}">{{ $term }}</option>
+                  @endforeach
+                </select><br>
+
+                <a>授業日数</a><br>
+                <input type="number" id="days" name="lesson_days" required><br>
+                <div id="container">
+                    <div class="item">
+                        <a>曜日</a><br>
+                        <select name="daytime[1][day]" id="">
+                          <option value="" disabled>選択してください</option>
+                          @foreach($days as $day)
+                          <option value="{{ $day->id }}">{{ $day->name }}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                    <div class="item" id="classes">
+                        <a>コマ数</a><br>
+                        <select name="daytime[1][period]" id="">
+                          <option value="" disabled>選択してください</option>
+                          @foreach($periods as $period)
+                          <option value="{{ $period->id }}">{{ $period->periods }}コマ目</option>
+                          @endforeach
+                        </select>
+                    </div><br>
+                </div>
+                <button id="add-button">追加する</button>
+            </div>
+            <div class="button">
+                <button id="clear">クリア</button>
+                <button id="register" type="submit">登録</button>
+            </div>
         </div>
-        <div>
-          <label>コマ数</label>
-          <select name="daytime[2][period]" id="">
-            <option value="" disabled>選択してください</option>
-            @foreach($periods as $period)
-            <option value="{{ $period->id }}">{{ $period->periods }}コマ目</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
     </div>
-
-    <button type="submit">確認</button>
-
   </form>
-</body>
-</html>
+<script type="text/javascript" src="{{ asset('js/A_subject_register.js') }}"></script>
+@endsection
