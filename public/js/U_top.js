@@ -90,6 +90,7 @@ overlayAttendBtn.addEventListener("click", function () {
             },
             body: JSON.stringify({
                 subject_id: subject_id,
+                attendace_id: 1,
             }),
         })
             .then((res) => res.json())

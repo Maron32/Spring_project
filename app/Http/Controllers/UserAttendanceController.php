@@ -119,13 +119,26 @@ class UserAttendanceController extends Controller
         // $user_id = Auth::id();
         $user_id = 1;
         $subject_id = $request->input('subject_id');
+        $date = Carbon::now('Asia/Tokyo')->format('Y-m-d');
         $enrolledSubject = EnrolledSubject::where('student_id', $user_id)
             ->where('subject_id', $subject_id)
             ->first();
 
+        $alreadyExists = AttendanceRecord::where('enrolled_subject_id', $enrolledSubject->id)
+        ->where('date', $date)
+        ->exists();
+
+        if ($alreadyExists) {
+            return response()->json([
+                'message' => 'すでに本日の出席は登録されています',
+                'status' => 'duplicate'
+            ], 409); // 409 Conflict
+        }
+
         AttendanceRecord::create([
             'enrolled_subject_id' => $enrolledSubject->id,
             'attendance_status_id' => 1, //出席
+            'date' => $date,
         ]);
 
         return response()->json(['message' => '出席登録が完了しました']);
