@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         header {
             background: linear-gradient(90deg, rgb(179, 238, 179) 0%, rgb(191, 207, 255) 100%);
@@ -27,7 +29,6 @@
             margin-left: 20px;
         }
     </style>
-    
 </head>
 
 <header>
@@ -36,6 +37,8 @@
 <body>
     @yield('content')
 </body>
+
+
 
 </body>
 </html>
