@@ -12,5 +12,6 @@ class AttendanceRecord extends Model
     protected $fillable = [
         'enrolled_subject_id',
         'attendance_status_id',
+        'date'
     ];
 }
