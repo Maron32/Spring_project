@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(SubjectSeeder::class);
         // 他のシーダーがあればここに追加
-        // $this->call(EnrolledSubjectsSeeder::class);
-        // $this->call(AttendanceRecordsSeeder::class);
+        $this->call(TimetableSeeder::class);
+        $this->call(EnrolledSubjectsSeeder::class);
+        $this->call(AttendanceRecordsSeeder::class);
     }
 }
