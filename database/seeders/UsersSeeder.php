@@ -71,6 +71,19 @@ class UsersSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => '杉田玄白',
+                'department_id' => 99,
+                'grade_id' => 99,
+                'email'  => 'sugita@morijyobi.ac.jp',
+                // 'email_varified_at' => null,
+                'password' => Hash::make('morijyobi'),
+                'master' => 1,
+                'delete' => 0,
+                'remember_token' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         DB::table('users')->insert($users);
