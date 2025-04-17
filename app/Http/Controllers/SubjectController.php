@@ -105,6 +105,7 @@ class SubjectController extends Controller
         } else {
             // 削除フラグがfalseの科目のみを取得する
             $subjects = Subject::where('is_deleted', 0)->with(['user:id,name'])->get();
+            // dd($subjects);
             // viewに科目を渡し、リダイレクト
             return view('user.user_subject_register', compact('subjects'));
         }
@@ -149,7 +150,7 @@ class SubjectController extends Controller
             }
             // セッションを削除
             session()->forget('subjects');
-            return redirect('/user/user_top');
+            return redirect('/user');
         }
     }
 
