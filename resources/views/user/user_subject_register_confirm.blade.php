@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>科目登録確認画面</title>
-</head>
+@extends('layouts.app')
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/U_subject_register_confirm.css') }}">
+
 <body>
   <h1>ユーザーの科目登録確認画面</h1>
   <form action="/user_subject_create" method="post" enctype="multipart/form-data">
@@ -15,5 +13,8 @@
     @endforeach
     <button type="submit">登録</button>
   </form>
+  
+  <script src="{{ asset('js/U_subject_register.js') }}" defer></script>
 </body>
 </html>
+@endsection
