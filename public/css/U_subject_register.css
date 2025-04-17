@@ -54,11 +54,11 @@ table th:nth-child(1) {
 }
 
 table th:nth-child(2) {
-    width: 30%;
+    width: 40%;
 }
 
 table th:nth-child(3) {
-    width: 30%;
+    width: 20%;
 }
 
 table th:nth-child(4) {
